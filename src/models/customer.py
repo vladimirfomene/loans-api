@@ -29,11 +29,12 @@ class Customer(Model, Base):
         return '<Customer(name={self.phone_number!r})>'.format(self=self)
 
 class CustomerSchema(Schema):
+    id = fields.Number()
     name = fields.Str()
     phone_number = fields.Str()
     city = fields.Str()
     location = fields.Str()
-    region = fields.str()
+    region = fields.Str()
     coordinates = fields.Str()
     created_at = fields.DateTime()
     updated_at = fields.DateTime()
