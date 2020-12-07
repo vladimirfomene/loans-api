@@ -11,22 +11,24 @@ class Loan(Model, Base):
     
     loan_amount = Column(Integer)
     amount_repaid = Column(Integer)
-    customer_id = Column(Integer, ForeignKey('customer.id'), nullable=False)
-    customer = relationship('Customer', backref=backref('loans', lazy=True))
     created_at = Column(DateTime)
     updated_at = Column(DateTime)
+    customer_id = Column(Integer, ForeignKey('customers.id'), nullable=False)
+    customer = relationship('Customer', backref=backref('loans', lazy=True))
 
-    def __init__(self, loan_amount, amount_repaid, customer_id):
-        Model.__init__(self)
+    def __init__(self, loan_amount, amount_repaid, created_at, updated_at, customer):
         self.loan_amount = loan_amount
         self.amount_repaid = amount_repaid
-        self.customer_id = customer_id
+        self.created_at = created_at
+        self.updated_at = updated_at
+        self.customer = customer
 
     def __repr__(self):
         return '<Loan(name={self.loan_amount!r})>'.format(self=self)
 
 
 class LoanSchema(Schema):
+    id = fields.Number()
     loan_amount = fields.Number()
     amount_repaid = fields.Number()
     customer_id = fields.Number()
