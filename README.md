@@ -60,7 +60,7 @@ python -m migrate
 
 ## Run Project
 
-To run the project, run the following commands:
+To run the project, run the following commands in the project's root directory:
 
 ```sh
 # make the script executable
